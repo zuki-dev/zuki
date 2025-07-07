@@ -1,0 +1,106 @@
+---
+name: 📚 Documentation Issue
+about: Report an issue with documentation or request documentation improvements
+title: '[DOCS] '
+labels: ['documentation', 'good-first-issue']
+assignees: ''
+---
+
+## Documentation Issue
+
+**Type of documentation issue:**
+- [ ] Missing documentation
+- [ ] Incorrect/outdated information
+- [ ] Unclear or confusing content
+- [ ] Broken links
+- [ ] Typos or grammar issues
+- [ ] Missing examples
+- [ ] API documentation missing
+- [ ] Tutorial needed
+
+## Location
+
+**Where is the documentation issue?**
+- [ ] README.md
+- [ ] CONTRIBUTING.md
+- [ ] API documentation (inline comments)
+- [ ] Code examples
+- [ ] Other: [specify]
+
+**Specific location:**
+- File: [filename]
+- Section: [section name or line numbers]
+- URL: [if applicable]
+
+## Issue Description
+
+**What's wrong or missing?**
+A clear description of the documentation issue.
+
+**Current documentation (if any):**
+```
+// Copy the current documentation text here if it exists but is incorrect
+```
+
+**Expected documentation:**
+What should the documentation say instead?
+
+## Suggested Improvement
+
+**Proposed content:**
+```markdown
+<!-- Your suggested documentation content -->
+```
+
+**Additional examples needed:**
+If examples would help, describe what kind of examples would be useful.
+
+## Context
+
+**Who would benefit from this documentation?**
+- [ ] New users getting started
+- [ ] Experienced users learning advanced features
+- [ ] Contributors to the project
+- [ ] API consumers
+- [ ] Other: [specify]
+
+**Use case:**
+Describe the scenario where someone would need this documentation.
+
+**Current workaround:**
+How are people currently figuring this out without proper documentation?
+
+## References
+
+**Related documentation:**
+Links to related documentation that might be helpful.
+
+**External resources:**
+Links to external resources, tutorials, or examples that cover this topic well.
+
+**Similar projects:**
+How do other similar projects document this feature?
+
+## Additional Context
+
+**Priority:**
+- [ ] Low - Nice to have
+- [ ] Medium - Important for user experience
+- [ ] High - Blocking users from using the feature
+
+**Complexity:**
+- [ ] Simple - Minor edit or addition
+- [ ] Medium - New section or significant rewrite
+- [ ] Complex - Major documentation overhaul needed
+
+**I can help with this:**
+- [ ] Yes, I'm willing to submit a PR
+- [ ] No, but I can provide feedback on drafts
+- [ ] No, I need someone else to handle this
+
+## Checklist
+
+- [ ] I have searched existing issues for similar documentation requests
+- [ ] I have checked if this documentation exists elsewhere
+- [ ] I have provided specific suggestions for improvement
+- [ ] I have considered the target audience for this documentation

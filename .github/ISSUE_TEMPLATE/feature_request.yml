@@ -1,0 +1,105 @@
+---
+name: 🚀 Feature Request
+about: Suggest a new feature or enhancement for zuki
+title: '[FEATURE] '
+labels: ['enhancement', 'needs-discussion']
+assignees: ''
+---
+
+## Feature Description
+
+**Is your feature request related to a problem? Please describe.**
+A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+
+**Describe the solution you'd like**
+A clear and concise description of what you want to happen.
+
+**Describe alternatives you've considered**
+A clear and concise description of any alternative solutions or features you've considered.
+
+## Use Cases
+
+**Primary Use Case**
+Describe the main scenario where this feature would be useful.
+
+**Additional Use Cases**
+List any other scenarios where this feature would be valuable.
+
+**Target Users**
+Who would benefit from this feature? (e.g., async runtime users, library developers, etc.)
+
+## Technical Details
+
+**Proposed API (if applicable)**
+```zig
+// Provide a rough sketch of what the API might look like
+const runtime = @import("zuki");
+
+pub fn example() !void {
+    // Your proposed API usage here
+}
+```
+
+**Implementation Considerations**
+- Performance implications
+- Memory usage considerations
+- Cross-platform compatibility
+- Breaking changes (if any)
+
+**Dependencies**
+List any new dependencies this feature might require.
+
+## Examples
+
+**Code Example**
+```zig
+// Provide an example of how this feature would be used
+const std = @import("std");
+const zuki = @import("zuki");
+
+pub fn main() !void {
+    // Example usage of the proposed feature
+}
+```
+
+**Real-world Scenario**
+Describe a real-world scenario where this feature would be used.
+
+## Acceptance Criteria
+
+**Definition of Done**
+- [ ] Feature implementation
+- [ ] Documentation updated
+- [ ] Tests added
+- [ ] Performance benchmarks (if applicable)
+- [ ] Cross-platform testing
+
+**Success Metrics**
+How will we measure the success of this feature?
+
+## Additional Context
+
+**Related Issues/PRs**
+List any related issues or pull requests.
+
+**External References**
+Links to relevant documentation, research papers, or other projects.
+
+**Priority**
+- [ ] Low - Nice to have
+- [ ] Medium - Would significantly improve the project
+- [ ] High - Critical for project success
+
+**Complexity Estimate**
+- [ ] Small - A few hours of work
+- [ ] Medium - A few days of work
+- [ ] Large - Weeks of work
+- [ ] Extra Large - Major undertaking
+
+## Checklist
+
+- [ ] I have searched existing issues to ensure this is not a duplicate
+- [ ] I have provided clear use cases for this feature
+- [ ] I have considered the impact on existing users
+- [ ] I have thought about backwards compatibility
+- [ ] I am willing to help implement this feature (optional)

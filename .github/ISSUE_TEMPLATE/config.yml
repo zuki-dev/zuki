@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 General Discussion
+    url: https://github.com/zuki-dev/zuki/discussions
+    about: Ask questions, share ideas, or discuss the project with the community
+  - name: 🔒 Security Issue
+    url: https://github.com/zuki-dev/zuki/security/advisories/new
+    about: Report a security vulnerability (private disclosure)

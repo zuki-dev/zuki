@@ -1,0 +1,113 @@
+---
+name: 🚄 Performance Issue
+about: Report a performance problem or regression in zuki
+title: '[PERFORMANCE] '
+labels: ['performance', 'needs-investigation']
+assignees: ''
+---
+
+## Performance Issue Description
+
+**What performance problem are you experiencing?**
+A clear description of the performance issue (e.g., slow execution, high memory usage, etc.).
+
+**Expected Performance**
+What performance characteristics did you expect?
+
+**Actual Performance**
+What performance are you actually seeing?
+
+## Measurements
+
+**Benchmark Results**
+```
+// Include relevant benchmark results, timing data, or profiling information
+Benchmark: [name]
+Time: [duration]
+Memory: [usage]
+CPU: [usage]
+```
+
+**Comparison Data**
+If you have performance comparisons (e.g., with other runtimes, previous versions), include them here.
+
+**Performance Regression?**
+- [ ] Yes, this worked better in a previous version
+- [ ] No, this has always been slow
+- [ ] Not sure
+
+If yes, what was the last working version? [version]
+
+## Environment
+
+**System Information:**
+- OS: [e.g., Windows 11, macOS 13.0, Ubuntu 22.04]
+- Architecture: [e.g., x86_64, aarch64]
+- CPU: [e.g., Intel i7-12700K, Apple M2, AMD Ryzen 7 5800X]
+- RAM: [e.g., 32GB DDR4-3200]
+- Zig Version: [e.g., 0.12.0]
+- zuki Version: [e.g., 0.1.0]
+
+**Build Configuration:**
+- Build Mode: [e.g., Debug, ReleaseFast, ReleaseSafe, ReleaseSmall]
+- Target: [e.g., native, x86_64-windows, etc.]
+- Optimization Flags: [any custom optimization settings]
+
+## Reproduction
+
+**Reproduction Code**
+```zig
+// Minimal code that demonstrates the performance issue
+const std = @import("std");
+const zuki = @import("zuki");
+
+pub fn main() !void {
+    // Your performance test code here
+}
+```
+
+**How to Measure**
+Instructions for reproducing the performance measurements:
+1. Step one
+2. Step two
+3. ...
+
+**Dataset/Workload**
+Describe the data or workload used in your performance test.
+
+## Analysis
+
+**Profiling Data**
+If you have profiling data (CPU, memory, etc.), please include it:
+- Call graphs
+- Memory allocation patterns
+- Hot paths
+- Cache miss rates
+
+**Suspected Cause**
+If you have any ideas about what might be causing the performance issue:
+
+**Impact Assessment**
+- [ ] Critical - Makes the runtime unusable
+- [ ] High - Significantly impacts performance
+- [ ] Medium - Noticeable performance degradation
+- [ ] Low - Minor performance impact
+
+## Additional Context
+
+**Workarounds**
+Any workarounds you've found that improve performance.
+
+**Related Issues**
+Links to related performance issues or discussions.
+
+**Performance Requirements**
+What performance characteristics are required for your use case?
+
+## Checklist
+
+- [ ] I have searched existing issues for similar performance problems
+- [ ] I have provided measurable performance data
+- [ ] I have tested with release builds (not debug)
+- [ ] I have included reproduction steps
+- [ ] I have profiled the code to identify bottlenecks (if possible)
