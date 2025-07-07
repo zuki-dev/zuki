@@ -19,6 +19,21 @@ pub fn build(b: *std.Build) void {
 
     b.installArtifact(lib);
 
+    // Executor test example
+    const executor_test = b.addExecutable(.{
+        .name = "executor_test",
+        .root_source_file = b.path("src/examples/executor_test.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+    executor_test.root_module.addImport("zuki", lib_mod);
+
+    const run_executor_test = b.addRunArtifact(executor_test);
+    run_executor_test.step.dependOn(b.getInstallStep());
+
+    const executor_test_step = b.step("executor-test", "Run the executor test example");
+    executor_test_step.dependOn(&run_executor_test.step);
+
     const lib_unit_tests = b.addTest(.{
         .root_module = lib_mod,
     });
