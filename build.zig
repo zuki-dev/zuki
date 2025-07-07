@@ -83,7 +83,7 @@ pub fn build(b: *std.Build) void {
     const examples_step = b.step("ex", "Build all examples");
 
     // Find and build all examples in the src/examples directory
-    findAndBuildExamples(b, "src/examples", lib_mod, target, optimize, examples_step);
+    findAndBuildExamples(b, "examples", lib_mod, target, optimize, examples_step);
 
     // Add a unit test step
     const lib_unit_tests = b.addTest(.{
