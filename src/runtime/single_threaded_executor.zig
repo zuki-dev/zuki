@@ -49,13 +49,24 @@ pub const SingleThreadedExecutor = struct {
     }
 
     pub fn deinit(self: *SingleThreadedExecutor) void {
+        // Free any tasks in the ready queue
+        while (self.ready_tasks.count() > 0) {
+            const task = self.ready_tasks.remove();
+            self.allocator.destroy(task);
+        }
+
+        // Free any tasks in the pending queue
+        for (self.pending_tasks.items) |task| {
+            self.allocator.destroy(task);
+        }
+
         // Free any allocated waker data
         var waker_iter = self.waker_data_map.valueIterator();
         while (waker_iter.next()) |waker_data_ptr| {
             self.allocator.destroy(waker_data_ptr.*);
         }
-        self.waker_data_map.deinit();
 
+        self.waker_data_map.deinit();
         self.ready_tasks.deinit();
         self.pending_tasks.deinit();
     }
@@ -126,6 +137,13 @@ pub const SingleThreadedExecutor = struct {
         switch (poll_result) {
             .Ready => {
                 task.state = .Completed;
+                // Clean up the waker data
+                if (self.waker_data_map.get(task.id)) |waker_data| {
+                    self.allocator.destroy(waker_data);
+                    _ = self.waker_data_map.remove(task.id);
+                }
+                // Free the task
+                self.allocator.destroy(task);
                 return true; // Task is complete
             },
             .Pending => {

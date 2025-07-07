@@ -38,7 +38,7 @@ fn taskFromFuture(future_ptr: anytype) Task {
 
     const PollFn = struct {
         fn poll_impl(ptr: *anyopaque, ctx: *Context) Poll(void) {
-            const typed_ptr = @as(FutureType, @alignCast(@ptrCast(ptr)));
+            const typed_ptr: FutureType = @ptrCast(@alignCast(ptr));
             _ = typed_ptr.poll(ctx.*);
             return Poll(void){ .Pending = {} };
         }
