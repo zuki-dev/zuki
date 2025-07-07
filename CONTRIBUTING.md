@@ -2,6 +2,12 @@
 
 Thanks for your interest in contributing! This is a personal project, but I welcome contributions from the community.
 
+## ⚠️ EARLY DEVELOPMENT NOTICE ⚠️
+
+**This project is in early development and APIs may change frequently without warning.**
+
+Please check the [roadmap in the README](README.md) to see the current development priorities for the MVP (0.1.0) release.
+
 ## Getting Started
 
 1. Fork the repository
@@ -19,7 +25,8 @@ Thanks for your interest in contributing! This is a personal project, but I welc
 ```bash
 zig build          # Build the library
 zig build test     # Run tests
-zig build run      # Run example
+zig build ex       # Build all examples
+zig build example_name  # Run a specific example (e.g., executor_test)
 ```
 
 ## Guidelines

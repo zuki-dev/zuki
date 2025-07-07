@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+- Memory leak in SingleThreadedExecutor when tasks complete
+- Fixed task cleanup in executor's deinit function
 
 ### Security
 

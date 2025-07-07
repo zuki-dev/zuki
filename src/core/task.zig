@@ -147,7 +147,24 @@ pub const Task = struct {
     pub fn from_future(future_ptr: anytype, id: u64) Self {
         const PollFn = struct {
             fn poll_impl(ptr: *anyopaque, ctx: *Context) Poll(void) {
-                const typed_ptr = @as(@TypeOf(future_ptr), @ptrCast(ptr));
+                const typed_ptr = @as(@TypeOf(future_ptr), @ptrCast(@alignCast(ptr)));
+                const result = typed_ptr.poll(ctx.*);
+                return switch (result) {
+                    .Ready => Poll(void){ .Ready = {} },
+                    .Pending => Poll(void){ .Pending = {} },
+                };
+            }
+        };
+
+        return Self.init(future_ptr, PollFn.poll_impl, id);
+    }
+
+    /// Helper to create a task from any typed future (for future use)
+    pub fn from_typed_future(comptime T: type, future_ptr: anytype, id: u64) Self {
+        _ = T; // For future typed future support
+        const PollFn = struct {
+            fn poll_impl(ptr: *anyopaque, ctx: *Context) Poll(void) {
+                const typed_ptr = @as(@TypeOf(future_ptr), @ptrCast(@alignCast(ptr)));
                 const result = typed_ptr.poll(ctx.*);
                 return switch (result) {
                     .Ready => Poll(void){ .Ready = {} },

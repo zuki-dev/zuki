@@ -121,6 +121,12 @@ pub const SingleThreadedExecutor = struct {
         return TaskHandle{ .id = task_ptr.id };
     }
 
+    /// Convenience method to spawn a future directly (future-proof helper)
+    pub fn spawn_future(self: *SingleThreadedExecutor, future_ptr: anytype) !TaskHandle {
+        const task = Task.from_future(future_ptr, 0); // ID will be overwritten
+        return self.spawn(task);
+    }
+
     /// Run a single task polling step
     fn poll_task(self: *SingleThreadedExecutor, task: *Task) !bool {
         // Create a waker for this task
