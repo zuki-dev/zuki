@@ -25,7 +25,8 @@ pub const DelayFuture = struct {
         } else {
             self.remaining -= 1;
             // Wake up on next tick
-            ctx.waker.wake();
+            var waker = ctx.get_waker();
+            waker.wake();
             return Poll(u32){ .Pending = {} };
         }
     }
@@ -37,7 +38,7 @@ fn taskFromFuture(future_ptr: anytype) Task {
 
     const PollFn = struct {
         fn poll_impl(ptr: *anyopaque, ctx: *Context) Poll(void) {
-            const typed_ptr: FutureType = @ptrCast(ptr);
+            const typed_ptr = @as(FutureType, @alignCast(@ptrCast(ptr)));
             _ = typed_ptr.poll(ctx.*);
             return Poll(void){ .Pending = {} };
         }

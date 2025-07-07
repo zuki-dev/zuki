@@ -17,7 +17,6 @@ pub const WakerData = struct {
 
 /// Single-threaded executor for running tasks
 pub const SingleThreadedExecutor = struct {
-    // Define the comparison function first so it can be referenced
     /// Task comparison function for priority queue (higher priority first)
     fn taskCompareFn(_: void, a: *Task, b: *Task) std.math.Order {
         // Higher priority comes first (reverse order)
@@ -26,7 +25,7 @@ pub const SingleThreadedExecutor = struct {
 
     /// Wake function called by the waker
     fn wakeTask(data: *anyopaque) void {
-        const waker_data = @as(*WakerData, @ptrCast(data));
+        const waker_data = @as(*WakerData, @alignCast(@ptrCast(data)));
         waker_data.executor.wake(waker_data.task_id) catch {};
     }
 
@@ -59,12 +58,10 @@ pub const SingleThreadedExecutor = struct {
 
         self.ready_tasks.deinit();
         self.pending_tasks.deinit();
-        // self.allocator = null; // This line causes issues as we're still using the allocator
     }
 
     /// Create a waker for a task
     fn createWaker(self: *SingleThreadedExecutor, task_id: u64) !Waker {
-        // Create waker data - this needs to live for the lifetime of the task
         const waker_data = try self.allocator.create(WakerData);
         waker_data.* = WakerData{
             .executor = self,
