@@ -1,5 +1,65 @@
 const std = @import("std");
 
+/// Find and build all examples in a directory
+fn findAndBuildExamples(b: *std.Build, examples_path: []const u8, lib_mod: *std.Build.Module, target: std.Build.ResolvedTarget, optimize: std.builtin.OptimizeMode, examples_step: *std.Build.Step) void {
+    // Open the examples directory
+    const examples_dir = b.build_root.handle.openDir(examples_path, .{ .iterate = true }) catch |err| {
+        std.debug.print("Error opening examples directory: {}\n", .{err});
+        return;
+    };
+    defer examples_dir.close();
+
+    // Iterate through files in the directory
+    var dir_iter = examples_dir.iterate();
+    while (dir_iter.next() catch |err| {
+        std.debug.print("Error iterating examples directory: {}\n", .{err});
+        return;
+    }) |entry| {
+        // We only care about .zig files
+        if (entry.kind != .file or !std.mem.endsWith(u8, entry.name, ".zig")) {
+            continue;
+        }
+
+        // Get the example name without the .zig extension
+        const example_name = entry.name[0 .. entry.name.len - 4];
+
+        // Skip files that don't look like examples
+        if (std.mem.startsWith(u8, example_name, ".") or
+            std.mem.startsWith(u8, example_name, "_"))
+        {
+            continue;
+        }
+
+        const example_path = b.fmt("{s}/{s}", .{ examples_path, entry.name });
+
+        // Create the executable for this example
+        const example_exe = b.addExecutable(.{
+            .name = example_name,
+            .root_source_file = b.path(example_path),
+            .target = target,
+            .optimize = optimize,
+        });
+
+        // Link with the library
+        example_exe.root_module.addImport("zuki", lib_mod);
+
+        // Install the example binary
+        b.installArtifact(example_exe);
+
+        // Add a run step for this specific example
+        const run_example = b.addRunArtifact(example_exe);
+        run_example.step.dependOn(b.getInstallStep());
+
+        // Add a step to build and run the specific example
+        // This allows `zig build <example_name>`
+        const example_step = b.step(example_name, b.fmt("Run the {s} example", .{example_name}));
+        example_step.dependOn(&run_example.step);
+
+        // Add this example to the "build all examples" step
+        examples_step.dependOn(&example_exe.step);
+    }
+}
+
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
 
@@ -19,21 +79,13 @@ pub fn build(b: *std.Build) void {
 
     b.installArtifact(lib);
 
-    // Executor test example
-    const executor_test = b.addExecutable(.{
-        .name = "executor_test",
-        .root_source_file = b.path("src/examples/executor_test.zig"),
-        .target = target,
-        .optimize = optimize,
-    });
-    executor_test.root_module.addImport("zuki", lib_mod);
+    // Create a common step for building all examples
+    const examples_step = b.step("ex", "Build all examples");
 
-    const run_executor_test = b.addRunArtifact(executor_test);
-    run_executor_test.step.dependOn(b.getInstallStep());
+    // Find and build all examples in the src/examples directory
+    findAndBuildExamples(b, "src/examples", lib_mod, target, optimize, examples_step);
 
-    const executor_test_step = b.step("executor-test", "Run the executor test example");
-    executor_test_step.dependOn(&run_executor_test.step);
-
+    // Add a unit test step
     const lib_unit_tests = b.addTest(.{
         .root_module = lib_mod,
     });
@@ -42,4 +94,8 @@ pub fn build(b: *std.Build) void {
 
     const test_step = b.step("test", "Run unit tests");
     test_step.dependOn(&run_lib_unit_tests.step);
+
+    // Add a default step that builds both the library and all examples
+    const default_step = b.getInstallStep();
+    default_step.dependOn(examples_step);
 }
