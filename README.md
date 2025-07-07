@@ -57,6 +57,23 @@ All examples can be built with:
 zig build ex
 ```
 
+### Running Tests
+
+The project includes a comprehensive test suite covering all async runtime components:
+
+```bash
+zig build test
+```
+
+This runs **47 tests** across 5 test files:
+- `test_poll.zig` - Poll system and state management
+- `test_waker.zig` - Waker mechanism and callbacks  
+- `test_task.zig` - Task abstraction and lifecycle
+- `test_executor.zig` - Single-threaded executor
+- `test_integration.zig` - End-to-end async coordination
+
+See [TESTING.md](TESTING.md) for detailed test documentation.
+
 ### Low-Level Executor Test
 
 ```bash

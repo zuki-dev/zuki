@@ -73,6 +73,12 @@ pub const SingleThreadedExecutor = struct {
 
     /// Create a waker for a task
     fn createWaker(self: *SingleThreadedExecutor, task_id: u64) !Waker {
+        // Clean up any existing waker data for this task
+        if (self.waker_data_map.get(task_id)) |existing_waker_data| {
+            self.allocator.destroy(existing_waker_data);
+            _ = self.waker_data_map.remove(task_id);
+        }
+
         const waker_data = try self.allocator.create(WakerData);
         waker_data.* = WakerData{
             .executor = self,

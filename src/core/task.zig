@@ -28,7 +28,7 @@ pub const Waker = struct {
     data: *anyopaque,
 
     /// Wake up the associated task
-    pub fn wake(self: *Waker) void {
+    pub fn wake(self: Waker) void {
         self.wake_fn(self.data);
     }
 

@@ -10,7 +10,7 @@ pub const Waker = task.Waker;
 pub const Future = task.Future;
 pub const Task = task.Task;
 pub const TaskState = task.TaskState;
-pub const Priority = task.TaskPriority;
+pub const TaskPriority = task.TaskPriority;
 pub const TaskHandle = task.TaskHandle;
 
 // Re-export helper functions

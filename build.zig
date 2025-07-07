@@ -92,6 +92,27 @@ pub fn build(b: *std.Build) void {
 
     const run_lib_unit_tests = b.addRunArtifact(lib_unit_tests);
 
+    // Add individual test files
+    const test_files = [_][]const u8{
+        "tests/test_poll.zig",
+        "tests/test_waker.zig",
+        "tests/test_task.zig",
+        "tests/test_executor.zig",
+        "tests/test_integration.zig",
+    };
+
+    for (test_files) |test_file| {
+        const test_exe = b.addTest(.{
+            .root_source_file = b.path(test_file),
+            .target = target,
+            .optimize = optimize,
+        });
+        test_exe.root_module.addImport("zuki", lib_mod);
+
+        const run_test = b.addRunArtifact(test_exe);
+        run_lib_unit_tests.step.dependOn(&run_test.step);
+    }
+
     const test_step = b.step("test", "Run unit tests");
     test_step.dependOn(&run_lib_unit_tests.step);
 
