@@ -1,5 +1,5 @@
 const std = @import("std");
-const zuki = @import("../root.zig");
+const zuki = @import("zuki");
 const Task = zuki.Task;
 const Context = zuki.Context;
 const Poll = zuki.Poll;

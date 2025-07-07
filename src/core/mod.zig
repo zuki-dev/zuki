@@ -11,7 +11,7 @@ pub const Future = task.Future;
 pub const Task = task.Task;
 pub const TaskState = task.TaskState;
 pub const Priority = task.TaskPriority;
-pub const Handle = task.TaskHandle;
+pub const TaskHandle = task.TaskHandle;
 
 // Re-export helper functions
 pub const ready = task.ready;

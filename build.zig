@@ -3,7 +3,7 @@ const std = @import("std");
 /// Find and build all examples in a directory
 fn findAndBuildExamples(b: *std.Build, examples_path: []const u8, lib_mod: *std.Build.Module, target: std.Build.ResolvedTarget, optimize: std.builtin.OptimizeMode, examples_step: *std.Build.Step) void {
     // Open the examples directory
-    const examples_dir = b.build_root.handle.openDir(examples_path, .{ .iterate = true }) catch |err| {
+    var examples_dir = b.build_root.handle.openDir(examples_path, .{ .iterate = true }) catch |err| {
         std.debug.print("Error opening examples directory: {}\n", .{err});
         return;
     };

@@ -6,7 +6,7 @@ const PollState = @import("../core/mod.zig").PollState;
 const Context = @import("../core/mod.zig").Context;
 const Waker = @import("../core/mod.zig").Waker;
 const TaskHandle = @import("../core/mod.zig").TaskHandle;
-const TaskPriority = @import("../core/mod.zig").TaskPriority;
+const TaskPriority = @import("../core/mod.zig").Priority;
 const TaskState = @import("../core/mod.zig").TaskState;
 
 /// Data structure to hold waker state
