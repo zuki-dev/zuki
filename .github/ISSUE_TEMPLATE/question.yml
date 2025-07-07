@@ -1,74 +1,145 @@
----
 name: ❓ Question
-about: Ask a question about using zuki
-title: '[QUESTION] '
-labels: ['question', 'needs-response']
-assignees: ''
----
+description: Ask a question about using zuki
+title: "[QUESTION] "
+labels: ["question", "needs-response"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your question! Please provide as much context as possible to help us give you the best answer.
 
-## Question
+  - type: textarea
+    id: question
+    attributes:
+      label: What would you like to know?
+      description: Ask your question clearly and concisely.
+    validations:
+      required: true
 
-**What would you like to know?**
-Ask your question clearly and concisely.
+  - type: textarea
+    id: goal
+    attributes:
+      label: What are you trying to achieve?
+      description: Describe your goal or use case.
+    validations:
+      required: true
 
-## Context
+  - type: textarea
+    id: attempted-solutions
+    attributes:
+      label: What have you tried so far?
+      description: Include any approaches you've already attempted.
+    validations:
+      required: false
 
-**What are you trying to achieve?**
-Describe your goal or use case.
+  - type: textarea
+    id: code-context
+    attributes:
+      label: Code context (if applicable)
+      description: Include relevant code that relates to your question.
+      render: zig
+      placeholder: |
+        const std = @import("std");
+        
+        pub fn main() void {
+            // Your code here
+        }
+    validations:
+      required: false
 
-**What have you tried so far?**
-Include any approaches you've already attempted.
+  - type: input
+    id: os
+    attributes:
+      label: Operating System (if relevant)
+      placeholder: e.g., Windows 11, macOS 13.0, Ubuntu 22.04
+    validations:
+      required: false
 
-**Code context (if applicable):**
-```zig
-// Include relevant code that relates to your question
-const std = @import("std");
+  - type: input
+    id: zig-version
+    attributes:
+      label: Zig Version (if relevant)
+      placeholder: e.g., 0.12.0
+    validations:
+      required: false
 
-pub fn main() void {
-    // Your code here
-}
-```
+  - type: input
+    id: zuki-version
+    attributes:
+      label: zuki Version (if relevant)
+      placeholder: e.g., 0.1.0
+    validations:
+      required: false
 
-## Environment
+  - type: checkboxes
+    id: documentation-checked
+    attributes:
+      label: Documentation checked
+      options:
+        - label: README.md
+        - label: API documentation
+        - label: Examples in the repository
+        - label: CONTRIBUTING.md
 
-**System Information (if relevant):**
-- OS: [e.g., Windows 11, macOS 13.0, Ubuntu 22.04]
-- Zig Version: [e.g., 0.12.0]
-- zuki Version: [e.g., 0.1.0]
+  - type: checkboxes
+    id: external-resources
+    attributes:
+      label: External resources consulted
+      options:
+        - label: Zig documentation
+        - label: Community discussions
+        - label: Stack Overflow
+        - label: Other async runtime documentation
 
-## Research Done
+  - type: textarea
+    id: similar-issues
+    attributes:
+      label: Similar issues/discussions
+      description: List any similar issues or discussions you found (but didn't fully answer your question).
+    validations:
+      required: false
 
-**Documentation checked:**
-- [ ] README.md
-- [ ] API documentation
-- [ ] Examples in the repository
-- [ ] CONTRIBUTING.md
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency
+      options:
+        - Just curious
+        - Needed for current project
+        - Blocking immediate work
+    validations:
+      required: true
 
-**External resources consulted:**
-- [ ] Zig documentation
-- [ ] Community discussions
-- [ ] Stack Overflow
-- [ ] Other async runtime documentation
+  - type: dropdown
+    id: experience
+    attributes:
+      label: Experience level
+      options:
+        - New to Zig
+        - New to async programming
+        - Experienced with both
+        - Other (specify in additional context)
+    validations:
+      required: true
 
-**Similar issues/discussions:**
-List any similar issues or discussions you found (but didn't fully answer your question).
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information that might be helpful.
+    validations:
+      required: false
 
-## Additional Context
-
-**Urgency:**
-- [ ] Just curious
-- [ ] Needed for current project
-- [ ] Blocking immediate work
-
-**Experience level:**
-- [ ] New to Zig
-- [ ] New to async programming
-- [ ] Experienced with both
-- [ ] Other: [specify]
-
-## Checklist
-
-- [ ] I have searched existing issues and discussions
-- [ ] I have checked the documentation
-- [ ] I have provided enough context for others to understand my question
-- [ ] This is not a bug report (if it is, please use the bug report template)
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues and discussions
+          required: true
+        - label: I have checked the documentation
+          required: true
+        - label: I have provided enough context for others to understand my question
+          required: true
+        - label: This is not a bug report (if it is, please use the bug report template)
+          required: true

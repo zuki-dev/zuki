@@ -1,106 +1,152 @@
----
 name: 📚 Documentation Issue
-about: Report an issue with documentation or request documentation improvements
-title: '[DOCS] '
-labels: ['documentation', 'good-first-issue']
-assignees: ''
----
+description: Report an issue with documentation or request documentation improvements
+title: "[DOCS] "
+labels: ["documentation", "good-first-issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve our documentation! Please provide details about the documentation issue.
 
-## Documentation Issue
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Type of documentation issue
+      multiple: true
+      options:
+        - Missing documentation
+        - Incorrect/outdated information
+        - Unclear or confusing content
+        - Broken links
+        - Typos or grammar issues
+        - Missing examples
+        - API documentation missing
+        - Tutorial needed
+    validations:
+      required: true
 
-**Type of documentation issue:**
-- [ ] Missing documentation
-- [ ] Incorrect/outdated information
-- [ ] Unclear or confusing content
-- [ ] Broken links
-- [ ] Typos or grammar issues
-- [ ] Missing examples
-- [ ] API documentation missing
-- [ ] Tutorial needed
+  - type: checkboxes
+    id: location
+    attributes:
+      label: Where is the documentation issue?
+      options:
+        - label: README.md
+        - label: CONTRIBUTING.md
+        - label: API documentation (inline comments)
+        - label: Code examples
+        - label: Other (specify below)
 
-## Location
+  - type: input
+    id: specific-location
+    attributes:
+      label: Specific location
+      description: File name, section name, line numbers, or URL if applicable
+      placeholder: e.g., README.md line 42, or https://example.com/docs
+    validations:
+      required: true
 
-**Where is the documentation issue?**
-- [ ] README.md
-- [ ] CONTRIBUTING.md
-- [ ] API documentation (inline comments)
-- [ ] Code examples
-- [ ] Other: [specify]
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: What's wrong or missing?
+      description: A clear description of the documentation issue.
+    validations:
+      required: true
 
-**Specific location:**
-- File: [filename]
-- Section: [section name or line numbers]
-- URL: [if applicable]
+  - type: textarea
+    id: current-docs
+    attributes:
+      label: Current documentation (if any)
+      description: Copy the current documentation text here if it exists but is incorrect.
+      render: markdown
+    validations:
+      required: false
 
-## Issue Description
+  - type: textarea
+    id: expected-docs
+    attributes:
+      label: Expected documentation
+      description: What should the documentation say instead?
+    validations:
+      required: true
 
-**What's wrong or missing?**
-A clear description of the documentation issue.
+  - type: textarea
+    id: proposed-content
+    attributes:
+      label: Proposed content
+      description: Your suggested documentation content.
+      render: markdown
+    validations:
+      required: false
 
-**Current documentation (if any):**
-```
-// Copy the current documentation text here if it exists but is incorrect
-```
+  - type: checkboxes
+    id: target-audience
+    attributes:
+      label: Who would benefit from this documentation?
+      options:
+        - label: New users getting started
+        - label: Experienced users learning advanced features
+        - label: Contributors to the project
+        - label: API consumers
+        - label: Other (specify in additional context)
 
-**Expected documentation:**
-What should the documentation say instead?
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: Describe the scenario where someone would need this documentation.
+    validations:
+      required: false
 
-## Suggested Improvement
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - "Low - Nice to have"
+        - "Medium - Important for user experience"
+        - "High - Blocking users from using the feature"
+    validations:
+      required: true
 
-**Proposed content:**
-```markdown
-<!-- Your suggested documentation content -->
-```
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Complexity
+      options:
+        - "Simple - Minor edit or addition"
+        - "Medium - New section or significant rewrite"
+        - "Complex - Major documentation overhaul needed"
+    validations:
+      required: true
 
-**Additional examples needed:**
-If examples would help, describe what kind of examples would be useful.
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Links to related documentation, external resources, or examples from similar projects.
+    validations:
+      required: false
 
-## Context
+  - type: checkboxes
+    id: help-offered
+    attributes:
+      label: Can you help with this?
+      options:
+        - label: Yes, I'm willing to submit a PR
+        - label: No, but I can provide feedback on drafts
+        - label: No, I need someone else to handle this
 
-**Who would benefit from this documentation?**
-- [ ] New users getting started
-- [ ] Experienced users learning advanced features
-- [ ] Contributors to the project
-- [ ] API consumers
-- [ ] Other: [specify]
-
-**Use case:**
-Describe the scenario where someone would need this documentation.
-
-**Current workaround:**
-How are people currently figuring this out without proper documentation?
-
-## References
-
-**Related documentation:**
-Links to related documentation that might be helpful.
-
-**External resources:**
-Links to external resources, tutorials, or examples that cover this topic well.
-
-**Similar projects:**
-How do other similar projects document this feature?
-
-## Additional Context
-
-**Priority:**
-- [ ] Low - Nice to have
-- [ ] Medium - Important for user experience
-- [ ] High - Blocking users from using the feature
-
-**Complexity:**
-- [ ] Simple - Minor edit or addition
-- [ ] Medium - New section or significant rewrite
-- [ ] Complex - Major documentation overhaul needed
-
-**I can help with this:**
-- [ ] Yes, I'm willing to submit a PR
-- [ ] No, but I can provide feedback on drafts
-- [ ] No, I need someone else to handle this
-
-## Checklist
-
-- [ ] I have searched existing issues for similar documentation requests
-- [ ] I have checked if this documentation exists elsewhere
-- [ ] I have provided specific suggestions for improvement
-- [ ] I have considered the target audience for this documentation
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues for similar documentation requests
+          required: true
+        - label: I have checked if this documentation exists elsewhere
+          required: true
+        - label: I have provided specific suggestions for improvement
+          required: true
+        - label: I have considered the target audience for this documentation
+          required: true

@@ -1,76 +1,147 @@
----
 name: 🐛 Bug Report
-about: Create a report to help us improve zuki
-title: '[BUG] '
-labels: ['bug', 'needs-triage']
-assignees: ''
----
+description: Create a report to help us improve zuki
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Please provide as much detail as possible.
 
-## Bug Description
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
 
-**Expected Behavior**
-A clear and concise description of what you expected to happen.
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: A clear and concise description of what actually happened.
+    validations:
+      required: true
 
-**Actual Behavior**
-A clear and concise description of what actually happened.
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: List the steps to reproduce the behavior.
+      placeholder: |
+        1. Go to '...'
+        2. Run command '...'
+        3. See error
+    validations:
+      required: true
 
-## Reproduction
+  - type: textarea
+    id: reproduction-code
+    attributes:
+      label: Minimal Reproduction Case
+      description: Please provide a minimal code example that reproduces the issue.
+      render: zig
+      placeholder: |
+        const std = @import("std");
+        
+        pub fn main() void {
+            // Your reproduction code here
+        }
+    validations:
+      required: false
 
-**Steps to Reproduce**
-1. Go to '...'
-2. Run command '...'
-3. See error
+  - type: dropdown
+    id: reproducibility
+    attributes:
+      label: Is the issue reproducible?
+      options:
+        - Always
+        - Sometimes
+        - Rarely
+        - Unable to reproduce
+    validations:
+      required: true
 
-**Minimal Reproduction Case**
-```zig
-// Please provide a minimal code example that reproduces the issue
-const std = @import("std");
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      placeholder: e.g., Windows 11, macOS 13.0, Ubuntu 22.04
+    validations:
+      required: true
 
-pub fn main() void {
-    // Your reproduction code here
-}
-```
+  - type: input
+    id: architecture
+    attributes:
+      label: Architecture
+      placeholder: e.g., x86_64, aarch64
+    validations:
+      required: true
 
-**Is the issue reproducible?**
-- [ ] Always
-- [ ] Sometimes
-- [ ] Rarely
-- [ ] Unable to reproduce
+  - type: input
+    id: zig-version
+    attributes:
+      label: Zig Version
+      placeholder: e.g., 0.12.0
+    validations:
+      required: true
 
-## Environment
+  - type: input
+    id: zuki-version
+    attributes:
+      label: zuki Version
+      placeholder: e.g., 0.1.0
+    validations:
+      required: true
 
-**System Information:**
-- OS: [e.g., Windows 11, macOS 13.0, Ubuntu 22.04]
-- Architecture: [e.g., x86_64, aarch64]
-- Zig Version: [e.g., 0.12.0]
-- zuki Version: [e.g., 0.1.0]
+  - type: dropdown
+    id: build-mode
+    attributes:
+      label: Build Mode
+      options:
+        - Debug
+        - ReleaseFast
+        - ReleaseSafe
+        - ReleaseSmall
+    validations:
+      required: true
 
-**Build Configuration:**
-- Build Mode: [e.g., Debug, ReleaseFast, ReleaseSafe, ReleaseSmall]
-- Target: [e.g., native, x86_64-windows, etc.]
+  - type: textarea
+    id: error-logs
+    attributes:
+      label: Error Messages/Logs
+      description: Please include any error messages, stack traces, or relevant logs.
+      render: shell
+    validations:
+      required: false
 
-## Additional Context
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here (workarounds, screenshots, etc.).
+    validations:
+      required: false
 
-**Error Messages/Logs**
-```
-// Please include any error messages, stack traces, or relevant logs
-```
-
-**Workarounds**
-If you found any workarounds, please describe them here.
-
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Additional Information**
-Add any other context about the problem here.
-
-## Checklist
-
-- [ ] I have searched existing issues to ensure this is not a duplicate
-- [ ] I have provided a minimal reproduction case
-- [ ] I have included all relevant environment information
-- [ ] I have checked that this issue exists on the latest version
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true
+        - label: I have provided a minimal reproduction case
+          required: true
+        - label: I have included all relevant environment information
+          required: true
+        - label: I have checked that this issue exists on the latest version
+          required: true
