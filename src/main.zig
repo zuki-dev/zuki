@@ -3,6 +3,18 @@
 //! is to delete this file and start with root.zig instead.
 
 pub fn main() !void {
+    // Initialize a general purpose allocator
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    defer _ = gpa.deinit();
+    const allocator = gpa.allocator();
+
+    // Create logger instance - this demonstrates proper usage
+    var app_logger = lib.logger.Logger.init(allocator, lib.logger.LogLevel.info);
+    defer app_logger.deinit(); // Important: always cleanup to prevent memory leak
+    
+    // Use the logger
+    try app_logger.info("Starting zuki runtime application", .{});
+    
     // Prints to stderr (it's a shortcut based on `std.io.getStdErr()`)
     std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
 
@@ -14,6 +26,7 @@ pub fn main() !void {
     const stdout = bw.writer();
 
     try stdout.print("Run `zig build test` to run the tests.\n", .{});
+    try app_logger.info("Application completed successfully", .{});
 
     try bw.flush(); // Don't forget to flush!
 }
