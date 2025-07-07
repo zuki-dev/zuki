@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Core task polling system (`Poll(T)` type)
+- Waker system for task notification
+- Single-threaded executor for running tasks
+- Example executor test demonstrating task scheduling and waker usage
 
 ### Changed
 
