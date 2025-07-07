@@ -49,11 +49,6 @@ The following features are planned for the initial 0.1.0 release:
 - [ ] Error handling patterns
 - [ ] Complete documentation and examples
 
-**Future (Post-MVP):**
-- [ ] `async/await` syntax (depends on Zig language features)
-- [ ] Multi-threaded executor
-- [ ] Work-stealing scheduler
-
 ## Running the Examples
 
 All examples can be built with:
