@@ -101,7 +101,7 @@ pub fn Future(comptime T: type) type {
         // Pointer to the actual future data
         ptr: *anyopaque,
 
-        const VTable = struct {
+        pub const VTable = struct {
             poll: *const fn (ptr: *anyopaque, ctx: Context) Poll(T),
             deinit: *const fn (ptr: *anyopaque) void,
         };

@@ -99,6 +99,7 @@ pub fn build(b: *std.Build) void {
         "tests/test_task.zig",
         "tests/test_executor.zig",
         "tests/test_integration.zig",
+        "tests/test_time_integration.zig",
     };
 
     for (test_files) |test_file| {
