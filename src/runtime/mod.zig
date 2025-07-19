@@ -1,2 +1,2 @@
-/// This module provides runtime functionality for the Zuki runtime.
+/// Runtime functionality for the Zuki runtime.
 pub const singleThreadedExecutor = @import("single_threaded_executor.zig");

@@ -143,7 +143,7 @@ test "Poll memory layout" {
     const poll_int = Poll(i32){ .Ready = 42 };
     const poll_void = Poll(void){ .Ready = {} };
 
-    // These should be efficient representations
+    // These should be compact representations
     // Note: Union with tag needs extra space for discriminant
     try testing.expect(@sizeOf(Poll(i32)) <= @sizeOf(i32) + @sizeOf(u8) + 4); // tag + value + padding
     try testing.expect(@sizeOf(Poll(void)) <= 8); // just the tag with some padding

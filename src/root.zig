@@ -4,6 +4,7 @@ const std = @import("std");
 pub const core = @import("core/mod.zig");
 pub const runtime = @import("runtime/mod.zig");
 pub const time = @import("time/mod.zig");
+pub const concurrent = @import("concurrent/mod.zig");
 
 // Re-export core types
 pub const Task = core.Task;
@@ -25,6 +26,12 @@ pub const Timer = time.Timer;
 pub const DelayFuture = time.DelayFuture;
 pub const TimeoutFuture = time.TimeoutFuture;
 pub const TimeoutError = time.TimeoutError;
+
+// Re-export concurrent types
+pub const Node = concurrent.Node;
+pub const NodeList = concurrent.NodeList;
+pub const LockFreeQueue = concurrent.LockFreeQueue;
+pub const RingBuffer = concurrent.RingBuffer;
 
 test {
     std.testing.refAllDeclsRecursive(@This());
