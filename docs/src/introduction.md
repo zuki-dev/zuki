@@ -14,32 +14,26 @@ Zuki is an async runtime that brings structured concurrency to Zig applications.
 
 ## Key Features
 
-### 🚀 **High Performance**
+### **High Performance**
 - Lock-free queues and ring buffers
 - Work-stealing scheduler
 - Minimal allocation overhead
 - Cache-friendly data structures
 
-### 🎯 **Zero-Cost Abstractions**
+### **Zero-Cost Abstractions**
 - Compile-time optimizations
 - No hidden allocations
 - Predictable performance
 - Optional features
 
-### 🔧 **Developer Friendly**
-- Clean, composable API
-- Comprehensive error handling
-- Extensive documentation
-- Rich examples
-
-### 🌐 **Cross-Platform**
+### **Cross-Platform**
 - Windows, Linux, macOS support
 - Consistent behavior across platforms
 - Native threading primitives
 
 ## Quick Example
 
-```rust
+```zig
 const std = @import("std");
 const zuki = @import("zuki");
 
@@ -70,7 +64,7 @@ const MyTask = struct {
 
 ## Project Status
 
-⚠️ **Early Development**: Zuki is currently in active development. APIs may change without notice. Use at your own risk for production workloads.
+**Early Development**: Zuki is currently in active development with verbose APIs that require significant boilerplate. APIs will change frequently without notice. Not recommended for production use.
 
 ## Getting Started
 
