@@ -206,7 +206,7 @@ This plan outlines the integration of advanced thread pool concepts from the ana
 - Gradual migration path for existing code
 
 ### New API Additions
-```zig
+```rust
 // New multi-threaded executor
 pub const MultiThreadedExecutor = runtime.MultiThreadedExecutor;
 
@@ -222,7 +222,7 @@ pub const Metrics = runtime.Metrics;
 ```
 
 ### Configuration Example
-```zig
+```rust
 const config = ExecutorConfig{
     .max_threads = 8,
     .stack_size = 2 * 1024 * 1024, // 2MB
