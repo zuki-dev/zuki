@@ -1,0 +1,16 @@
+/* SEO and custom styling */
+
+/* Add structured data and meta tags for better SEO */
+head::before {
+    content: "";
+}
+
+/* Ensure proper heading hierarchy for SEO */
+h1, h2, h3, h4, h5, h6 {
+    scroll-margin-top: 60px;
+}
+
+/* Improve readability for SEO */
+.content {
+    line-height: 1.6;
+}

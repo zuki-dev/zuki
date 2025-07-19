@@ -4,11 +4,12 @@ Welcome to **Zuki**, a high-performance async runtime for Zig designed to be fas
 
 ## What is Zuki?
 
-Zuki is an async runtime that brings structured concurrency to Zig applications. It provides:
+Zuki is an async runtime that brings structured concurrency to Zig applications. Perfect for developers looking for Zig async programming, concurrent task execution, and high-performance async patterns.
 
+Key capabilities:
 - **Task-based execution** - Lightweight, composable async tasks
 - **Future/Poll pattern** - Similar to Rust's async model but optimized for Zig
-- **Lock-free data structures** - High-performance concurrent collections
+- **Lock-free data structures** - High-performance concurrent collections  
 - **Work stealing** - Efficient load balancing across threads
 - **Zero-cost abstractions** - Pay only for what you use
 
