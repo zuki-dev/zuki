@@ -13,6 +13,13 @@ All notable changes to this project will be documented in this file.
 
 - *(executor)* Add test for isEmpty() method
 
+### ⚙️ Miscellaneous Tasks
+
+- *(repo)* Clean
+- *(workflows)* Update docs deploy workflow to only deploy on docs changes
+- *(repo)* Clean up, removed broken example
+- *(repo)* Update readme
+
 ## [0.0.0-nightly.20250707] - 2025-07-07
 
 ### ⚙️ Miscellaneous Tasks
