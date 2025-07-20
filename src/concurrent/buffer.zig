@@ -38,7 +38,7 @@ pub const RingBuffer = struct {
     };
 
     /// Push nodes from a list to the buffer
-    /// Returns error.Overflow if buffer is full and provides overflowed nodes
+    /// Returns error.Overflow if buffer is full with overflowed nodes
     pub fn push(self: *RingBuffer, list: *NodeList) error{Overflow}!void {
         var head = self.head.load(.monotonic);
         var tail = self.tail.load(.unordered); // Only we modify tail

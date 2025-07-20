@@ -49,5 +49,5 @@ Zuki is currently in early development with significant limitations:
 - Advanced scheduling (priorities, deadlines)
 - I/O integration (file, network, sockets)
 - Ecosystem packages (HTTP, databases)
-- Comprehensive benchmarking vs other runtimes
+- Full benchmarking vs other runtimes
 - API stabilization (1.0 release)

@@ -47,7 +47,7 @@ pub fn TimeoutFuture(comptime T: type) type {
             return create(timer, future, @intCast(secs * std.time.ns_per_s));
         }
 
-        /// Implementation of the Future trait
+        /// Poll method for timeout future
         pub fn poll(self: *Self, ctx: Context) Poll(ResultType) {
             // If already completed, don't poll again
             if (self.completed) {

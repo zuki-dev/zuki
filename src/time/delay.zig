@@ -36,7 +36,7 @@ pub const DelayFuture = struct {
         return create(timer, @intCast(secs * std.time.ns_per_s));
     }
 
-    /// Implementation of the Future trait
+    /// Poll method for delay future
     pub fn poll(self: *Self, ctx: Context) Poll(void) {
         const now = std.time.nanoTimestamp();
 

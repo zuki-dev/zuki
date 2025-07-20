@@ -17,7 +17,7 @@ Zuki is currently being actively developed, and APIs may change frequently witho
 
 ## Waker System
 
-The Zuki waker system is designed to efficiently manage asynchronous task execution. When a task is polled and returns `Pending`, it's moved to a pending queue. The waker mechanism allows the task to signal when it's ready to make progress again.
+The Zuki waker system efficiently manages asynchronous task execution. When a task is polled and returns `Pending`, it's moved to a pending queue. The waker mechanism allows the task to signal when it's ready to make progress again.
 
 Key components:
 

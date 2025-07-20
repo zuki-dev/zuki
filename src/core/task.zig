@@ -21,7 +21,7 @@ pub const Context = struct {
 
 /// Mechanism for waking up a task when it can make progress
 pub const Waker = struct {
-    // Function pointer for the wake implementation
+    // Function pointer for wake callback
     wake_fn: *const fn (data: *anyopaque) void,
     // Data pointer passed to wake_fn
     data: *anyopaque,
@@ -41,7 +41,7 @@ pub const Waker = struct {
 };
 
 /// Represents the state of a poll in the Zuki runtime.
-/// This struct wraps the `Poll` type and provides methods to check the state.
+/// Wraps Poll with convenience methods
 pub const PollState = struct {
     /// The current state of the poll.
     state: Poll(bool),
