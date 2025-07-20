@@ -1,8 +1,17 @@
+<div align="center">
+
+<img src="docs/assets/zuki.png" alt="Zuki Logo" width="200">
+
 # zuki
 
 **The async runtime for Zig you've never heard of** — until now.
 
+</div>
+
 <div align="center">
+
+
+[![GitHub Actions CI](https://img.shields.io/github/workflow/status/zuki-dev/zuki/CI?style=flat&color=purple)]
 
 [![GitHub last commit](https://img.shields.io/github/last-commit/zuki-dev/zuki?style=flat&color=blue)](https://github.com/zuki-dev/zuki/commits)
 [![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/zuki-dev/zuki?include_prereleases&style=flat&color=orange&label=version)](https://github.com/zuki-dev/zuki/releases)
