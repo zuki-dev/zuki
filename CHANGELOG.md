@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### 🚀 Features
 
 - *(executor)* Utility function isEmpty() bool to check if the executor has finished all work / has no work to do and pending.
+- *(executor)* Add two new helper functions spawnHigh and spawnLow
 
 ### 🧪 Testing
 

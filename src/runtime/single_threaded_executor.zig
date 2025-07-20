@@ -210,4 +210,50 @@ pub const SingleThreadedExecutor = struct {
     pub fn isEmpty(self: *SingleThreadedExecutor) bool {
         return self.ready_tasks.count() == 0 and self.pending_tasks.items.len == 0;
     }
+
+    /// Get the current number of tasks in the executor
+    pub fn getTaskCount(self: *SingleThreadedExecutor) usize {
+        return self.ready_tasks.count() + self.pending_tasks.items.len;
+    }
+
+    pub fn clearPendingTasks(self: *SingleThreadedExecutor) void {
+        for (self.pending_tasks.items) |task| {
+            // Free each pending task
+            self.allocator.destroy(task);
+        }
+    }
+
+    pub fn getNextTaskId(self: *SingleThreadedExecutor) u64 {
+        return self.next_task_id;
+    }
+
+    pub fn spawnHigh(self: *SingleThreadedExecutor, task: Task) !TaskHandle {
+        const task_ptr = try self.allocator.create(Task);
+        task_ptr.* = task;
+
+        task_ptr.id = self.next_task_id;
+        self.next_task_id += 1;
+        task_ptr.state = .Ready;
+        task_ptr.priority = .High;
+
+        // Add to the ready queue with high priority
+        try self.ready_tasks.add(task_ptr);
+
+        return TaskHandle{ .id = task_ptr.id };
+    }
+
+    pub fn spawnLow(self: *SingleThreadedExecutor, task: Task) !TaskHandle {
+        const task_ptr = try self.allocator.create(Task);
+        task_ptr.* = task;
+
+        task_ptr.id = self.next_task_id;
+        self.next_task_id += 1;
+        task_ptr.state = .Ready;
+        task_ptr.priority = .Low;
+
+        // Add to the ready queue with low priority
+        try self.ready_tasks.add(task_ptr);
+
+        return TaskHandle{ .id = task_ptr.id };
+    }
 };
