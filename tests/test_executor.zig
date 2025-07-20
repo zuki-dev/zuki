@@ -104,6 +104,30 @@ test "SingleThreadedExecutor - spawn multiple tasks" {
     try testing.expect(executor.next_task_id == 5);
 }
 
+test "SingleThreadedExecutor - isEmpty check" {
+    const allocator = testing.allocator;
+
+    var executor = try SingleThreadedExecutor.init(allocator);
+    defer executor.deinit();
+
+    // Initially should be empty
+    try testing.expect(executor.isEmpty());
+
+    // Spawn a task
+    var future = ImmediatelyReadyFuture{};
+    const task = Task.from_future(&future, 0);
+    _ = try executor.spawn(task);
+
+    // Now should not be empty
+    try testing.expect(!executor.isEmpty());
+
+    // Run the executor to complete the task
+    try executor.run();
+
+    // After running, should be empty again
+    try testing.expect(executor.isEmpty());
+}
+
 test "SingleThreadedExecutor - run single ready task" {
     const allocator = testing.allocator;
 
