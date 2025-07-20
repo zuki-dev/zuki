@@ -206,4 +206,8 @@ pub const SingleThreadedExecutor = struct {
 
         return self.ready_tasks.count() > 0;
     }
+
+    pub fn isEmpty(self: *SingleThreadedExecutor) bool {
+        return self.ready_tasks.count() == 0 and self.pending_tasks.items.len == 0;
+    }
 };
